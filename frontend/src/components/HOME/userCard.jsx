@@ -28,7 +28,9 @@ export default function UserWelcomeCard() {
       {/* 상단 */}
       <div style={styles.headerRow}>
         <div style={styles.avatar} aria-hidden />
-        <div style={{ textAlign: 'left' }}>
+        
+        {/* ✅ titleBlock 적용 */}
+        <div style={styles.titleBlock}>
           <div style={styles.title}>{user?.managerName} 님, 안녕하세요!</div>
           <div style={styles.role}>{user?.role || '관리자'}</div>
         </div>
@@ -68,25 +70,23 @@ export default function UserWelcomeCard() {
 }
 
 const styles = {
-  // 로그인 박스 폭과 동일(부모가 300px이면 width: '100%'로 바꿔도 OK)
+  // 로그인 박스와 동일 borderRadius: 12px
   card: {
     width: 300,
     backgroundColor: 'white',
-    padding: '24px 24px 16px',   // ⬅ 하단 패딩 줄여서 버튼 아래 여백 축소
-    borderRadius: 12,
+    padding: '24px 24px 16px',
+    borderRadius: 12,   // ✅ 로그인 박스와 동일
     boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
     textAlign: 'center',
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    // minHeight 제거 ⬅ 여백 원인 해결
   },
 
   headerRow: {
     display: 'flex',
     gap: 12,
     alignItems: 'flex-start',
-    textAlign: 'left',
     position: 'relative',
   },
   avatar: {
@@ -96,8 +96,12 @@ const styles = {
     background: '#e5e7eb',
     flex: '0 0 auto',
   },
+  titleBlock: {
+    marginTop: 6,       // 👈 여기 값 조절해서 블록 전체를 아래로
+    textAlign: 'left',
+  },
   title: {
-    fontSize: 16,   // 로그인 input/버튼과 통일
+    fontSize: 16,
     fontWeight: 700,
     color: '#111827',
     whiteSpace: 'nowrap',
@@ -106,7 +110,7 @@ const styles = {
   },
   role: {
     marginTop: 2,
-    fontSize: 12,   // 보조 텍스트는 12px
+    fontSize: 12,
     color: '#6b7280',
   },
 
@@ -122,7 +126,7 @@ const styles = {
     fontSize: 12,
   },
 
-  line: { height: 1, background: '#f3f4f6', margin: '12px 0' },
+  line: { height: 1, background: '#f3f4f6', margin: '20px 0 20px 0' },
 
   orgRow: { display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 },
   pin: { color: '#0F4D2A' },
@@ -145,15 +149,16 @@ const styles = {
   },
 
   logoutBtn: {
-    marginTop: 60,              // ⬅ 더 이상 'auto' 아님 (공간을 과하게 밀지 않음)
+    marginTop: 25,
+    marginBottom: 30,
     width: '100%',
     padding: '12px 0',
     background: '#185c37',
     color: '#fff',
     border: 0,
-    borderRadius: 999,
+    borderRadius: 9,
     fontWeight: 700,
-    fontSize: 16,
+    fontSize: 12,
     cursor: 'pointer',
   },
 };
